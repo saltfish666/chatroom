@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket</title>
+</head>
+<body>
+    <h1>Echo Test</h1>
+    <input id="sendTxt" type="text">
+    <button id="sendBtn">send</button>
+    <div id="recv"></div>
+<script>
+    url1 = "ws://echo.websocket.org/"
+    url2 = "ws://localhost:3028/"
+    var websocket = new WebSocket(url2)
+    websocket.onopen = function () {
+        document.getElementById("recv").innerHTML = "Connect"
+    }
+    websocket.onclose = function () {
+        document.getElementById("recv").innerHTML = "Close"
+    }
+    websocket.onmessage = function (e) {
+        showMessage(e.data)
+    }
+    document.getElementById('sendBtn').onclick = function () {
+        var text = document.getElementById("sendTxt").value
+        if(text){
+            websocket.send(text)
+        }   
+    }
+    function showMessage(str){
+        var div = document.createElement('div')
+        div.innerHTML = str
+        document.body.appendChild(div)
+    }
+</script>
+</body>
+</html>
