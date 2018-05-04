@@ -12,7 +12,9 @@
 <script>
     url1 = "ws://echo.websocket.org/"
     url2 = "ws://localhost:3028/"
-    var websocket = new WebSocket(url2)
+    url3 = "ws://libai688.com:3028/"
+    
+    var websocket = new WebSocket(url3)
     websocket.onopen = function () {
         document.getElementById("recv").innerHTML = "Connect"
     }
